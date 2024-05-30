@@ -1,0 +1,25 @@
+# def home(request):
+#     return render(request,'home.html')
+# def usercreates(request):
+#     if request.method=='POST':
+#         firstname=request.POST['n1']
+#         lastname=request.POST['n2']
+#         usern=request.POST['n3']
+#         email=request.POST['n4']
+#         password=request.POST['n5']
+#         conform_password=request.POST['n6']
+#         adress=request.POST['n7']
+#         age=request.POST['n8']
+#         number=request.POST['n9']
+#         images=request.FILES.get('n10')
+#         id1=User.objects.get(id)
+#         user=User.objects.create_user(
+#                     first_name=firstname,
+#                     last_name=lastname,
+#                     username=usern,
+#                     email=email,
+#                     password=password)
+#         user.save()
+#         tech=usercreate(address=adress,age=age,number=number,image=images,user=id1)
+#         tech.save()
+#         return redirect('/')

@@ -1,0 +1,37 @@
+from django.shortcuts import render,redirect
+from django.contrib.auth.models import User,auth
+from teachapp.models import usercreate
+from django.contrib import messages
+
+# Create your views here.
+
+def home(request):
+    return render(request,'home.html')
+
+def creates(request):
+    if request.method=='POST':
+        first_name=request.POST['n1']
+        last_name=request.POST['n2']
+        username=request.POST['n3']
+        password=request.POST['n4']
+        cpassword=request.POST['n5']
+        email=request.POST['n6']
+        address=request.POST['n7']
+        age=request.POST['n8']
+        contact=request.POST['n9']
+        img=request.FILES['n10']
+        if password==cpassword:
+            if User.objects.filter(username=username).exists():
+                messages.info(request,'Username Exists')
+            else:
+                use=User.objects.create_user(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
+                use.save()
+                user1=usercreate(address=address,age=age,number=contact,image=img,user=use)
+                user1.user=use
+                user1.save()
+                messages.info(request,'Successfully Added')
+                return redirect('/')
+        else:
+            messages.info(request,'Passsword doesnt match!')
+    return redirect('/')
+        
